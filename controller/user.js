@@ -27,6 +27,8 @@ let posts = [
     },
 ];
 
+let last_id = 3;
+
 export const getPosts = (req,res)=>{
     res.json(posts)
 }
@@ -36,3 +38,34 @@ export const spp = (req,res)=>{
     if (!spost) return res.status(404).json({ message: "Post not found" });
     res.json(spost)
 }
+
+export const newp = (req, res) => {
+    const newId = last_id += 1;
+    const post = {
+      id: newId,
+      title: req.body.title,
+      content: req.body.content,
+      author: req.body.author,
+      date: new Date(),
+    };
+    last_id = newId;
+    posts.push(post);
+    res.status(201).json(post);
+  };
+
+  export const editp = (req,res)=>{
+    const post = posts.find((a) => a.id === parseInt(req.params.id))
+    if(!post) return res.status(404).json({message:"Post not found!"});
+
+    if(req.body.title) post.title = req.body.title;
+    if(req.body.content) post.content = req.body.content;
+    if(req.body.author) post.author = req.body.author;
+    res.json(post);
+  }
+
+  export const delp = (req,res)=>{
+    const index = posts.findIndex((a) => a.id === parseInt(req.params.id))
+    if(index===-1) return res.status(404).json({message:"post not found!"})
+    posts.splice(index,1);
+    res.json(posts);
+  }

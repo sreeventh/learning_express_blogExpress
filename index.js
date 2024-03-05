@@ -7,14 +7,15 @@ import cors from "cors"
 const app = express();
 const port = 4000;
 
+app.use(bodyParser.urlencoded({extended:true}));
+app.use(bodyParser.json());
 
-
-app.use("/", route)
+app.use("/", route);
 
 
 app.listen(port, () => {
     console.log(`Listening on port: ${port}`);
-})
+});
 
 
 
