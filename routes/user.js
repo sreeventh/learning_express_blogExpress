@@ -1,5 +1,5 @@
 import express from "express";
-import { getPosts,spp,newp,editp,delp } from "../controller/user.js";
+import { getPosts,spp,newp,editp,delp,filtration } from "../controller/user.js";
 
 
 const route = express.Router();
@@ -9,6 +9,9 @@ route.get("/post",getPosts);
 
 // get one specific post
 route.get("/post/:id",spp);
+
+// get specific type of posts
+route.get("/filter",filtration)
 
 // post a new post
 route.post("/post",newp)

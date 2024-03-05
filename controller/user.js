@@ -8,6 +8,7 @@ let posts = [
             "Decentralized Finance (DeFi) is an emerging and rapidly evolving field in the blockchain industry. It refers to the shift from traditional, centralized financial systems to peer-to-peer finance enabled by decentralized technologies built on Ethereum and other blockchains. With the promise of reduced dependency on the traditional banking sector, DeFi platforms offer a wide range of services, from lending and borrowing to insurance and trading.",
         author: "Alex Thompson",
         date: "2023-08-01T10:00:00Z",
+        type: "fin"
     },
     {
         id: 2,
@@ -16,6 +17,7 @@ let posts = [
             "Artificial Intelligence (AI) is no longer a concept of the future. It's very much a part of our present, reshaping industries and enhancing the capabilities of existing systems. From automating routine tasks to offering intelligent insights, AI is proving to be a boon for businesses. With advancements in machine learning and deep learning, businesses can now address previously insurmountable problems and tap into new opportunities.",
         author: "Mia Williams",
         date: "2023-08-05T14:30:00Z",
+        type: "tech"
     },
     {
         id: 3,
@@ -24,6 +26,7 @@ let posts = [
             "Sustainability is more than just a buzzword; it's a way of life. As the effects of climate change become more pronounced, there's a growing realization about the need to live sustainably. From reducing waste and conserving energy to supporting eco-friendly products, there are numerous ways we can make our daily lives more environmentally friendly. This post will explore practical tips and habits that can make a significant difference.",
         author: "Samuel Green",
         date: "2023-08-10T09:15:00Z",
+        type:"eco"
     },
 ];
 
@@ -68,4 +71,9 @@ export const newp = (req, res) => {
     if(index===-1) return res.status(404).json({message:"post not found!"})
     posts.splice(index,1);
     res.status(200).json(posts);
+  }
+
+  export const filtration = (req,res)=>{
+    const post = posts.filter((a) => a.type === req.query.type)
+    res.json(post)
   }
