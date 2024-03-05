@@ -67,5 +67,5 @@ export const newp = (req, res) => {
     const index = posts.findIndex((a) => a.id === parseInt(req.params.id))
     if(index===-1) return res.status(404).json({message:"post not found!"})
     posts.splice(index,1);
-    res.json(posts);
+    res.status(200).json(posts);
   }
