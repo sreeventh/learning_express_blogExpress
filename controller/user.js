@@ -50,6 +50,7 @@ export const newp = (req, res) => {
       content: req.body.content,
       author: req.body.author,
       date: new Date(),
+      type: req.body.type
     };
     last_id = newId;
     posts.push(post);
